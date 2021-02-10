@@ -10,7 +10,7 @@ import (
 
 const (
 	userTable      = "users"
-	noteListsTable = "note_lists"
+	noteListsTable = "note_list"
 	userLIstTable  = "users_list"
 	noteItemsTable = "note_items"
 	listItemsTable = "lists_items"

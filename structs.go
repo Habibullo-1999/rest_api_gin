@@ -8,9 +8,9 @@ type User struct {
 }
 
 type NoteList struct {
-	Id      int    `json:"id"`
-	Title   string `json:"title"`
-	Content string `json:"content"`
+	Id      int    `json:"id" db:"id"`
+	Title   string `json:"title" db:"title" binding:"required" `
+	Content string `json:"content" db:"content"`
 }
 
 type UserList struct {

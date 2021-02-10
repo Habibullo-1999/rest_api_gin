@@ -13,6 +13,9 @@ type Authorization interface {
 }
 
 type NoteList interface {
+	Create(userId int, list rest_api_gin.NoteList) (int, error)
+	GetAll(userId int, )([]rest_api_gin.NoteList, error)
+	GetById(userId,listId int) (rest_api_gin.NoteList, error)	
 }
 
 type NoteItem interface {
@@ -27,5 +30,6 @@ type Service struct {
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(repos.Authorization),
-	}
+		NoteList: NewNoteListService(repos.NoteList),
+		}
 }

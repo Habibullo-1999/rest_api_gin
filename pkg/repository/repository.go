@@ -12,6 +12,9 @@ type Authorization interface {
 }
 
 type NoteList interface {
+	Create(userId int, list rest_api_gin.NoteList) (int, error)
+	GetAll(userId int )([]rest_api_gin.NoteList, error)
+	GetById(userId,listId int) (rest_api_gin.NoteList, error)
 }
 
 type NoteItem interface {
@@ -26,6 +29,6 @@ type Repository struct {
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Authorization: NewAuthPostgres(db),
-		
+		NoteList: NewNoteListPostgres(db),
 	}
 }
