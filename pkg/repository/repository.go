@@ -8,6 +8,7 @@ import (
 
 type Authorization interface {
 	CreateUser(user rest_api_gin.User) (int, error)
+	GetUser(username, password string) (rest_api_gin.User, error)	
 }
 
 type NoteList interface {
@@ -25,5 +26,6 @@ type Repository struct {
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Authorization: NewAuthPostgres(db),
+		
 	}
 }

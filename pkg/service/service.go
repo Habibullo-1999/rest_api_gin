@@ -8,6 +8,8 @@ import (
 
 type Authorization interface {
 	CreateUser(user rest_api_gin.User) (int, error)
+	CreateToToken(username, password string) (string, error)
+	ParseToken(token string) (int, error)
 }
 
 type NoteList interface {
@@ -22,8 +24,8 @@ type Service struct {
 	NoteItem
 }
 
-func NewService(repose *repository.Repository) *Service {
+func NewService(repos *repository.Repository) *Service {
 	return &Service{
-		Authorization: repose.Authorization,
+		Authorization: NewAuthService(repos.Authorization),
 	}
 }
