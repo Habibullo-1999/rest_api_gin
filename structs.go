@@ -1,5 +1,7 @@
 package rest_api_gin
 
+import "errors"
+
 type User struct {
 	Id       int    `json:"-" db:"id"`
 	Name     string `json:"name" binding:"required"`
@@ -30,4 +32,16 @@ type ListItem struct {
 	Id     int
 	ListId int
 	UserId int
+}
+
+type UpdateListInput struct {
+	Title   *string `json:"title"`
+	Content *string `json:"content"`
+}
+
+func (i UpdateListInput) Validate() error {
+	if i.Title == nil && i.Content == nil {
+		return errors.New("update structure has no values")
+	}
+	return nil
 }

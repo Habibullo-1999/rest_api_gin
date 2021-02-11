@@ -25,3 +25,14 @@ func (s *NoteListService) GetAll(userId int, )([]rest_api_gin.NoteList, error) {
 func (s *NoteListService) GetById(userId,listId int) (rest_api_gin.NoteList, error){
 	return s.repo.GetById(userId,listId)
 }
+
+func(s *NoteListService) Delete(userId, listId int) error {
+	return s.repo.Delete(userId,listId)
+}
+
+func(s *NoteListService) Update(userId, listId int, input rest_api_gin.UpdateListInput) error{
+	if err := input.Validate(); err !=nil {
+		return err
+	} 
+	return s.repo.Update(userId,listId,input)
+}

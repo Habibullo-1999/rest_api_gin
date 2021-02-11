@@ -15,6 +15,8 @@ type NoteList interface {
 	Create(userId int, list rest_api_gin.NoteList) (int, error)
 	GetAll(userId int )([]rest_api_gin.NoteList, error)
 	GetById(userId,listId int) (rest_api_gin.NoteList, error)
+	Delete(userId, listId int) error
+	Update(userId, listId int, input rest_api_gin.UpdateListInput) error
 }
 
 type NoteItem interface {
