@@ -22,17 +22,17 @@ CREATE TABLE users_list
     list_id     INT references note_list(id) on delete cascade NOT NULL
 );
 
-CREATE TABLE note_items
-(
-    id          SERIAL              NOT NULL unique,
-    title       VARCHAR(255)        NOT NULL,
-    content     VARCHAR(255)
-);
+-- CREATE TABLE note_items
+-- (
+--     id          SERIAL              NOT NULL unique,
+--     title       VARCHAR(255)        NOT NULL,
+--     content     VARCHAR(255)
+-- );
 
-CREATE TABLE lists_item
-(
-    id          SERIAL              NOT NULL unique,
-    item_id     INT references note_items(id) on delete cascade not null,
-    list_id     INT references note_list(id) on delete cascade not null
-);
+-- CREATE TABLE lists_item
+-- (
+--     id          SERIAL              NOT NULL unique,
+--     item_id     INT references note_items(id) on delete cascade not null,
+--     list_id     INT references note_list(id) on delete cascade not null
+-- );
 

@@ -21,18 +21,6 @@ type UserList struct {
 	ListId int
 }
 
-type NoteItem struct {
-	Id      int    `json:"id"`
-	Title   string `json:"title"`
-	Content string `json:"content"`
-	Delete  bool   `json:"delete"`
-}
-
-type ListItem struct {
-	Id     int
-	ListId int
-	UserId int
-}
 
 type UpdateListInput struct {
 	Title   *string `json:"title"`

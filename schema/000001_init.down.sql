@@ -1,8 +1,7 @@
-CREATE TABLE lists_item;
-CREATE TABLE users_list;
 CREATE TABLE note_list;
+CREATE TABLE users_list;
 CREATE TABLE users;
-CREATE TABLE note_items;
+
 
 
 
