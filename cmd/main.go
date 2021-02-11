@@ -2,7 +2,10 @@ package main
 
 import (
 	// "log"
+	"context"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/Habibullo-1999/rest_api_gin"
 	"github.com/Habibullo-1999/rest_api_gin/pkg/handler"
@@ -42,8 +45,27 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 	srv := new(rest_api_gin.Server)
-	if err := srv.Run(viper.GetString("port"), handlers.InitRouter()); err != nil {
-		logrus.Fatalf("error accured while running http server: %s", err.Error())
+
+	go func() {
+		if err := srv.Run(viper.GetString("port"), handlers.InitRouter()); err != nil {
+			logrus.Fatalf("error accured while running http server: %s", err.Error())
+		}
+	}()
+
+	logrus.Print("NoteApp starting")
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
+	<- quit
+
+	logrus.Print("NoteApp Shutting Down")
+
+	if err := srv.Shutdown(context.Background()); err != nil {
+		logrus.Errorf("error occured on server shutting down: %s", err.Error())
+	}
+
+	if err :=db.Close(); err != nil {
+		logrus.Errorf("error occured on db connextion close: %s", err.Error())
 	}
 }
 
