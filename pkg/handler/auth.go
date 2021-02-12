@@ -8,6 +8,8 @@ import (
 
 )
 
+
+
 func (h *Handler) signUp(c *gin.Context) {
 	var input rest_api_gin.User
 

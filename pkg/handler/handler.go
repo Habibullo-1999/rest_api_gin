@@ -33,7 +33,6 @@ func (h Handler) InitRouter() *gin.Engine {
 			lists.PUT("/:id", h.updateList)
 			lists.DELETE("/:id", h.deleteList)
 
-
 		}
 	}
 	return router
